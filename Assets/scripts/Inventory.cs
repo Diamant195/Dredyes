@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
         dredguys.transform.GetChild(0).transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x - 0.25f, dredguys.transform.GetChild(0).transform.position.y);
         //Summon Item
         SummonItem("Block", 4);
-        for(int i = 0; i<10; i++)
+        for(int i = 0; i<30; i++)
         SummonItem("Ship Embiggener", 1);
     }
     public void SummonItem(string ItemName, int amount)
@@ -157,9 +157,25 @@ public class Inventory : MonoBehaviour
         hit = Physics2D.Raycast(GameObject.FindGameObjectWithTag("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), 1f);
         if (hit || slots[selectedSlot].itemName == "No Item") return;
         DroppedItem = (GameObject)Instantiate(Resources.Load("DroppedItem") as GameObject, GameObject.Find("clones").transform);
-        DroppedItem.transform.position = GameObject.FindGameObjectWithTag("Player").transform.position;
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x > GameObject.FindGameObjectWithTag("Player").transform.position.x) DroppedItem.transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x + 1f, GameObject.FindGameObjectWithTag("Player").transform.position.y);
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < GameObject.FindGameObjectWithTag("Player").transform.position.x) DroppedItem.transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x -1f, GameObject.FindGameObjectWithTag("Player").transform.position.y);
         DroppedItem.GetComponent<droppedItem>().takeInfo(slots[selectedSlot]);
+        DroppedItem.GetComponent<Rigidbody2D>().AddForce(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x * 25, Camera.main.ScreenToWorldPoint(Input.mousePosition).y * 22));
+        DroppedItem.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
+        tmp = 10;
+        for(int i = 0; i<5; i++)
+        {
+            if (i == selectedSlot || slots[i].itemName != slots[selectedSlot].itemName) continue;
+                tmp = i;
+                break;
+        }
         slots[selectedSlot] = Resources.Load("No Item") as Item;
+        if (tmp != 10)
+        {
+            selectedSlot = tmp;
+            foreach (GameObject slot in InventorySlots) slot.GetComponent<Image>().color = Color.white;
+            InventorySlots[selectedSlot].GetComponent<Image>().color = Color.green;
+        }
         UpdateInventory();
     }
     void Update()
