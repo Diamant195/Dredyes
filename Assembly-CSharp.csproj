@@ -55,16 +55,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\dredguy.cs" />
-     <Compile Include="Assets\droppedItem.cs" />
+     <Compile Include="Assets\ZoneGeneration.cs" />
      <Compile Include="Assets\scripts\Inventory.cs" />
-     <Compile Include="Assets\scripts\InventoryManager.cs" />
      <Compile Include="Assets\scripts\Item.cs" />
      <Compile Include="Assets\scripts\camera.cs" />
+     <Compile Include="Assets\scripts\dredguy.cs" />
+     <Compile Include="Assets\scripts\droppedItem.cs" />
      <Compile Include="Assets\scripts\foot.cs" />
      <Compile Include="Assets\scripts\fpscounter.cs" />
      <Compile Include="Assets\scripts\helm.cs" />
-     <Compile Include="Assets\ship_manager.cs" />
+     <Compile Include="Assets\scripts\ship_manager.cs" />
      <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
      <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />

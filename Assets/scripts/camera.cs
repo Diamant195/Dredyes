@@ -7,6 +7,7 @@ public class camera : MonoBehaviour
     private Camera cam;
     private float targetZoom;
     private float zoomFactor = 30f;
+    public float zoomMax = 50;
     [SerializeField] private float zoomLerpSpeed = 10;
     GameObject player;
     void Start()
@@ -20,12 +21,13 @@ public class camera : MonoBehaviour
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 0.5f, transform.position.z);
         float scrollData = Input.GetAxis("Mouse ScrollWheel");
         targetZoom -= scrollData * zoomFactor;
-        targetZoom = Mathf.Clamp(targetZoom, 8f, 50f);
+        targetZoom = Mathf.Clamp(targetZoom, 8f, zoomMax);
         if (Input.GetKeyDown(KeyCode.C)) 
         {
-            if (cam.orthographicSize < 25) targetZoom = 50;
+            if (cam.orthographicSize < 25) targetZoom = zoomMax;
             else targetZoom = 8;
         }
         cam.orthographicSize = Mathf.Lerp(cam.orthographicSize, targetZoom, Time.deltaTime * zoomLerpSpeed);        
     }
+    
 }

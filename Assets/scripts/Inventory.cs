@@ -54,7 +54,7 @@ public class Inventory : MonoBehaviour
         dredguys.transform.GetChild(0).transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x - 0.25f, dredguys.transform.GetChild(0).transform.position.y);
         //Summon Item
         SummonItem("Block", 4);
-        for(int i = 0; i<30; i++)
+        for(int i = 0; i<10; i++)
         SummonItem("Ship Embiggener", 1);
     }
     public void SummonItem(string ItemName, int amount)
@@ -157,8 +157,8 @@ public class Inventory : MonoBehaviour
         hit = Physics2D.Raycast(GameObject.FindGameObjectWithTag("Player").transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition), 1f);
         if (hit || slots[selectedSlot].itemName == "No Item") return;
         DroppedItem = (GameObject)Instantiate(Resources.Load("DroppedItem") as GameObject, GameObject.Find("clones").transform);
-        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x > GameObject.FindGameObjectWithTag("Player").transform.position.x) DroppedItem.transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x + 1f, GameObject.FindGameObjectWithTag("Player").transform.position.y);
-        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < GameObject.FindGameObjectWithTag("Player").transform.position.x) DroppedItem.transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x -1f, GameObject.FindGameObjectWithTag("Player").transform.position.y);
+        if(Camera.main.ScreenToWorldPoint(Input.mousePosition).x > GameObject.FindGameObjectWithTag("Player").transform.position.x) DroppedItem.transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x + 0.5f, GameObject.FindGameObjectWithTag("Player").transform.position.y);
+        else if (Camera.main.ScreenToWorldPoint(Input.mousePosition).x < GameObject.FindGameObjectWithTag("Player").transform.position.x) DroppedItem.transform.position = new Vector2(GameObject.FindGameObjectWithTag("Player").transform.position.x -0.5f, GameObject.FindGameObjectWithTag("Player").transform.position.y);
         DroppedItem.GetComponent<droppedItem>().takeInfo(slots[selectedSlot]);
         DroppedItem.GetComponent<Rigidbody2D>().AddForce(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x * 25, Camera.main.ScreenToWorldPoint(Input.mousePosition).y * 22));
         DroppedItem.GetComponent<Rigidbody2D>().AddTorque(1, ForceMode2D.Impulse);
