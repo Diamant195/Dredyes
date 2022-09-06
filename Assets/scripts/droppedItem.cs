@@ -29,12 +29,13 @@ public class droppedItem : MonoBehaviour
     }
     private IEnumerator OnMouseDown()
     {
-        if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 5)
+        if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 5)
         {
             yield return new WaitForSeconds(0.05f);
             if (GameObject.Find("Inventory").GetComponent<Inventory>().PickUpItem(gameObject)) Destroy(gameObject);
             if (item.size <= 0) Destroy(gameObject);
         }
+        else Debug.Log("TOO FAR");
     }
     public void takeInfo(Item item, int size)
     {
@@ -63,7 +64,8 @@ public class droppedItem : MonoBehaviour
     {
         if (hovering)
         {
-            if (Vector3.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 5) clone.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = gmarker; else clone.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = ymarker;
+            if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 5) clone.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = gmarker; else clone.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = ymarker;
+            if (Vector2.Distance(transform.position, GameObject.FindGameObjectWithTag("Player").transform.position) < 5) clone.GetComponent<TextMeshPro>().color = Color.green; else clone.GetComponent<TextMeshPro>().color = Color.yellow;
 
             clone.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.75f, clone.transform.position.z);
             

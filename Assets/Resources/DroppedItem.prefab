@@ -145,3 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item: {fileID: 0}
   text: {fileID: 4355750167340237125, guid: f244680bd7a56474b9d5b64abedb45a5, type: 3}
+  gmarker: {fileID: 21300000, guid: a422fd9fe3b92ec4a82ac2fd8d1152cb, type: 3}
+  ymarker: {fileID: 21300000, guid: b3273948e6f97e94682c705fa9878d03, type: 3}

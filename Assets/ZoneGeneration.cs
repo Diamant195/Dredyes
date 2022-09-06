@@ -29,11 +29,7 @@ public class ZoneGeneration : MonoBehaviour
         {
             for (int y = 0; y < height; y++)
             {
-                if (x == 0 || y == 0 || x == width - 1 || y == height - 1)
-                {
-                    tiles[x, y] = 2;
-                }
-                else if (randChoice.Next(0, 100) < tileSpawnRate)
+                if (randChoice.Next(0, 100) < tileSpawnRate)
                 {
                     tiles[x, y] = 1;
                 }
@@ -62,6 +58,7 @@ public class ZoneGeneration : MonoBehaviour
                 }
             }
         }
+        for (int x = 0; x < width; x++) for (int y = 0; y < height; y++) if (x == 0 || y == 0 || x == width - 1 || y == height - 1) tiles[x, y] = 2;
     }
     private int GetNeighbors(int pointX, int pointY)
     {

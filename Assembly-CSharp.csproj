@@ -58,6 +58,8 @@
      <Compile Include="Assets\ZoneGeneration.cs" />
      <Compile Include="Assets\scripts\Inventory.cs" />
      <Compile Include="Assets\scripts\Item.cs" />
+     <Compile Include="Assets\scripts\Tile.cs" />
+     <Compile Include="Assets\scripts\WorldTile.cs" />
      <Compile Include="Assets\scripts\camera.cs" />
      <Compile Include="Assets\scripts\dredguy.cs" />
      <Compile Include="Assets\scripts\droppedItem.cs" />

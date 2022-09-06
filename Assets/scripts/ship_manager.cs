@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ship_manager : MonoBehaviour
 {
-    List<List<GameObject>> tiles = new List<List<GameObject>>();
+    int[,] tiles = new int[80, 80];
     public int shipheight = 5;
     public int shipwidth = 10;
     public GameObject blcorner, brcorner, tlcorner, trcorner;
@@ -25,14 +25,13 @@ public class ship_manager : MonoBehaviour
         Debug.Log("Hello World");
         boat = GameObject.FindWithTag("ship");
         playerscript = GameObject.FindGameObjectWithTag("Player").GetComponent<dredguy>();
-
     }
     private void Update()
     {
         if (playerscript.onHelm)
         {
             verticalaxis = Input.GetAxis("Vertical");
-            transform.parent.transform.position = new Vector2(transform.parent.transform.position.x + playerscript.horizontalaxis * shipspeed * Time.deltaTime, transform.parent.transform.position.y + verticalaxis * shipspeed * Time.deltaTime);
+            transform.parent.position = new Vector2(transform.parent.position.x + (playerscript.horizontalaxis * shipspeed * Time.deltaTime), transform.parent.position.y + (Input.GetAxis("Vertical") * shipspeed * Time.deltaTime));
         }
     }
     void renderborders()
